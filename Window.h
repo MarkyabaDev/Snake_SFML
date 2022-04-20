@@ -1,7 +1,3 @@
-//
-// Created by Markus Baars on 20.04.2022.
-//
-
 #ifndef SNAKE_WINDOW_H
 #define SNAKE_WINDOW_H
 
