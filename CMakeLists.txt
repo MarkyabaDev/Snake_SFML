@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR D:/Projekte/C++/SFML-2.5.1/lib/cmake/SFML)
 
-add_executable(Snake main.cpp Window.cpp Window.h Game.cpp Game.h)
+add_executable(Snake main.cpp Window.cpp Window.h Game.cpp Game.h Snake.cpp Snake.h)
 find_package(SFML COMPONENTS system graphics audio network window REQUIRED)
 include_directories(D:/Projekte/C++/SFML-2.5.1/include)
 
