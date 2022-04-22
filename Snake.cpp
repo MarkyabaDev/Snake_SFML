@@ -90,6 +90,8 @@ void Snake::Extend()
             case Direction::RIGHT:
                 m_snakeBody.push_back(SnakeSegment(tailHead.Position.x - 1, tailHead.Position.y + 1));
                 break;
+            case Direction::NONE:
+                break;
         }
     }
 }
@@ -121,6 +123,8 @@ void Snake::Move()
             break;
         case Direction::DOWN:
             ++m_snakeBody[0].Position.y;
+            break;
+        case Direction::NONE:
             break;
     }
 }
