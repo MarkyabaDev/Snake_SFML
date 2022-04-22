@@ -21,7 +21,8 @@ void Game::Update()
 void Game::Render()
 {
     m_window.BeginDraw();
-    // m_window.Draw();
+    m_world.Render(*m_window.GetRenderWindow());
+    m_snake.Render(*m_window.GetRenderWindow());
     m_window.EndDraw();
 }
 
