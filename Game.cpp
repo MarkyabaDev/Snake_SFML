@@ -11,11 +11,38 @@ Game::Game(float l_frameTime) : m_window("Snake", sf::Vector2u(800, 600)), m_sna
 
 Game::~Game() {}
 
-void Game::HandleInput() {}
+void Game::HandleInput() {
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && m_snake.GetDirection() != Direction::DOWN)
+    {
+        m_snake.SetDirection(Direction::UP);
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && m_snake.GetDirection() != Direction::UP)
+    {
+        m_snake.SetDirection(Direction::DOWN);
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && m_snake.GetDirection() != Direction::LEFT)
+    {
+        m_snake.SetDirection(Direction::RIGHT);
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && m_snake.GetDirection() != Direction::RIGHT)
+    {
+        m_snake.SetDirection(Direction::LEFT);
+    }
+}
 
 void Game::Update()
 {
     m_window.Update();
+
+    float timeStep =  1.0f / m_snake.GetSpeed();
+    if (m_elapsedFixed.asSeconds() >= timeStep) {
+        m_snake.Tick();
+        m_world.Update(m_snake);
+        m_elapsedFixed -= sf::seconds(timeStep);
+        if (m_snake.HasLost()) {
+            m_snake.Reset();
+        }
+    }
 }
 
 void Game::Render()
