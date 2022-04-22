@@ -6,11 +6,13 @@
 #define SNAKE_GAME_H
 
 #include "Window.h"
+#include "World.h"
+#include "Snake.h"
 
 class Game
 {
 public:
-    explicit Game(float l_frameTime = 60.0f);
+    Game(float l_frameTime = 60.0f);
     ~Game();
 
     void HandleInput();
@@ -29,6 +31,9 @@ private:
     sf::Time m_elapsed;
 
     float m_frameTime;
+
+    World m_world;
+    Snake m_snake;
 };
 
 
