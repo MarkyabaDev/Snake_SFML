@@ -12,19 +12,19 @@ Game::Game(float l_frameTime) : m_window("Snake", sf::Vector2u(800, 600)), m_sna
 Game::~Game() {}
 
 void Game::HandleInput() {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && m_snake.GetDirection() != Direction::DOWN)
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && m_snake.GetPhysicalDirection() != Direction::DOWN)
     {
         m_snake.SetDirection(Direction::UP);
     }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && m_snake.GetDirection() != Direction::UP)
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && m_snake.GetPhysicalDirection() != Direction::UP)
     {
         m_snake.SetDirection(Direction::DOWN);
     }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && m_snake.GetDirection() != Direction::LEFT)
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && m_snake.GetPhysicalDirection() != Direction::LEFT)
     {
         m_snake.SetDirection(Direction::RIGHT);
     }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && m_snake.GetDirection() != Direction::RIGHT)
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && m_snake.GetPhysicalDirection() != Direction::RIGHT)
     {
         m_snake.SetDirection(Direction::LEFT);
     }

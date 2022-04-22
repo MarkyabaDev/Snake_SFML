@@ -38,6 +38,28 @@ bool Snake::HasLost() { return m_lost; }
 void Snake::Lose() { m_lost = true; }
 void Snake::ToggleLost() { m_lost = !m_lost; }
 
+Direction Snake::GetPhysicalDirection()
+{
+    if (m_snakeBody.size() <= 1)
+    {
+        return Direction::NONE;
+    }
+
+    SnakeSegment &head = m_snakeBody[0];
+    SnakeSegment &neck = m_snakeBody[1];
+
+    if (head.Position.x == neck.Position.x)
+    {
+        return (head.Position.y > neck.Position.y ? Direction::DOWN : Direction::UP);
+    }
+    else if (head.Position.y == neck.Position.y)
+    {
+        return (head.Position.x > neck.Position.x ? Direction::RIGHT : Direction::LEFT);
+    }
+
+    return Direction::NONE;
+}
+
 sf::Vector2i Snake::GetPosition()
 {
     return (!m_snakeBody.empty() ? m_snakeBody.front().Position : sf::Vector2i(1, 1));
