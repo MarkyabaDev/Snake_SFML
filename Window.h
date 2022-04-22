@@ -20,6 +20,7 @@ public:
     bool IsDone() const;
     bool IsFullscreen() const;
     sf::Vector2u GetWindowSize() const;
+    sf::RenderWindow* GetRenderWindow();
 
     void Draw(sf::Drawable &l_drawable);
 

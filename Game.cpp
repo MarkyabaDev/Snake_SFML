@@ -4,10 +4,9 @@
 
 #include "Game.h"
 
-Game::Game(float l_frameTime) : m_window("Snake", sf::Vector2u(2560, 1440)), m_snake(m_world.GetBlockSize()), m_world(sf::Vector2u(2560, 1440))
+Game::Game(float l_frameTime) : m_window("Snake", sf::Vector2u(800, 600)), m_snake(m_world.GetBlockSize()), m_world(sf::Vector2u(800, 600))
 {
     m_frameTime = 1.0f / l_frameTime;
-    std::cout << m_frameTime << std::endl;
 }
 
 Game::~Game() {}
@@ -31,9 +30,19 @@ Window *Game::GetWindow()
     return &m_window;
 }
 
+void Game::RestartClockFixed()
+{
+    m_elapsedFixed += m_clock.restart();
+}
+
 void Game::RestartClock()
 {
     m_elapsed = m_clock.restart();
+}
+
+sf::Time Game::GetElapsedTimeFixed()
+{
+    return m_elapsedFixed;
 }
 
 sf::Time Game::GetElapsedTime()

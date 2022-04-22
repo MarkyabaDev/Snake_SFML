@@ -21,13 +21,18 @@ public:
 
     Window *GetWindow();
 
+    sf::Time GetElapsedTimeFixed();
     sf::Time GetElapsedTime();
+
+    void RestartClockFixed();
     void RestartClock();
+
 
 private:
     Window m_window;
 
     sf::Clock m_clock;
+    sf::Time m_elapsedFixed;
     sf::Time m_elapsed;
 
     float m_frameTime;
