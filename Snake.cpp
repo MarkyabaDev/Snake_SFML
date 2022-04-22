@@ -23,8 +23,8 @@ void Snake::Reset()
 
     SetDirection(Direction::NONE); // Start off still
     m_speed = 15;
-    m_speed = 3;
-    m_speed = 0;
+    m_lives = 3;
+    m_score = 0;
     m_lost = false;
 }
 
