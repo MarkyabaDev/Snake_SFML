@@ -17,5 +17,5 @@ if(APPLE)
     include_directories(${SFML_INCLUDE_DIRS})
 endif()
 
-add_executable(Snake main.cpp Window.cpp Window.h Game.cpp Game.h Snake.cpp Snake.h World.cpp World.h)
+add_executable(Snake main.cpp Window.cpp Window.h Game.cpp Game.h Snake.cpp Snake.h World.cpp World.h Textbox.cpp Textbox.h fonts/arial.ttf)
 target_link_libraries(Snake sfml-system sfml-graphics sfml-audio sfml-network sfml-window)

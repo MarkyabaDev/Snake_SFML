@@ -4,9 +4,10 @@
 
 #include "World.h"
 
-World::World(sf::Vector2u l_windSize)
+World::World(sf::Vector2u l_windSize, Textbox *l_textbox)
 {
     m_blockSize = 16;
+    m_textbox = l_textbox;
 
     m_windowSize = l_windSize;
     RespawnApple();
@@ -54,6 +55,11 @@ void World::Update(Snake &l_player)
     {
         l_player.Extend();
         l_player.IncreaseScore();
+
+        AddMessageToTextBox("Player ate an apple.");
+        AddMessageToTextBox("Score: " + std::to_string(l_player.GetScore()));
+        AddMessageToTextBox("Snake length: " + std::to_string(l_player.GetSnakeLength()));
+
         RespawnApple();
     }
 
@@ -66,6 +72,7 @@ void World::Update(Snake &l_player)
         || l_player.GetPosition().y >= gridSizeY - 1)
     {
         l_player.Lose();
+        AddMessageToTextBox("Player ran into wall and lost.");
     }
 }
 
@@ -78,8 +85,17 @@ void World::Render(sf::RenderWindow &l_window)
     l_window.draw(m_appleShape);
 }
 
-int World::GetBlockSize() {
+int World::GetBlockSize()
+{
     return m_blockSize;
+}
+
+void World::AddMessageToTextBox(std::string l_message)
+{
+    if (m_textbox != nullptr)
+    {
+        m_textbox->Add(l_message);
+    }
 }
 
 World::~World() = default;

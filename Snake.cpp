@@ -4,9 +4,10 @@
 
 #include "Snake.h"
 
-Snake::Snake(int l_blockSize)
+Snake::Snake(int l_blockSize, Textbox *l_textbox)
 {
     m_size = l_blockSize;
+    m_textbox = l_textbox;
     m_bodyRect.setSize(sf::Vector2f(m_size - 1, m_size - 1));
     Reset();
 }
@@ -166,6 +167,14 @@ void Snake::CheckCollision()
     }
 }
 
+void Snake::AddMessageToTextBox(std::string l_message)
+{
+    if (m_textbox != nullptr)
+    {
+        m_textbox->Add(l_message);
+    }
+}
+
 void Snake::Cut(int l_segments)
 {
     for (int i = 0; i < l_segments; ++i)
@@ -176,7 +185,12 @@ void Snake::Cut(int l_segments)
     if (!m_lives)
     {
         Lose();
+        AddMessageToTextBox("Player ate himself too often and loses the game.");
+        return;
     }
+
+    AddMessageToTextBox("Player ate himself and loses " + std::to_string(l_segments) + " segments of the snake.");
+    AddMessageToTextBox("Lives: " + std::to_string(m_lives));
 }
 
 void Snake::Render(sf::RenderWindow &l_window)
@@ -194,5 +208,10 @@ void Snake::Render(sf::RenderWindow &l_window)
         m_bodyRect.setPosition(itr->Position.x * m_size, itr->Position.y * m_size);
         l_window.draw(m_bodyRect);
     }
+}
+
+int Snake::GetSnakeLength()
+{
+    return m_snakeBody.size();
 }
 

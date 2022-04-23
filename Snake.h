@@ -6,6 +6,7 @@
 #define SNAKE_SNAKE_H
 
 #include "SFML/Graphics.hpp"
+#include "Textbox.h"
 
 struct SnakeSegment
 {
@@ -20,7 +21,7 @@ enum class Direction{ NONE, UP, DOWN, LEFT, RIGHT };
 class Snake
 {
 public:
-    Snake(int l_blockSize);
+    Snake(int l_blockSize, Textbox *l_textbox = nullptr);
     ~Snake();
 
     // Helper methods
@@ -30,6 +31,7 @@ public:
     int GetSpeed();
     sf::Vector2i GetPosition();
     int GetLives();
+    int GetSnakeLength();
     int GetScore();
     void IncreaseScore();
     bool HasLost();
@@ -46,6 +48,7 @@ public:
     void Render(sf::RenderWindow &l_window);
 private:
     void CheckCollision();  // Check for collision
+    void AddMessageToTextBox(std::string l_message);
     SnakeContainer m_snakeBody;
     int m_size;
     Direction m_dir;
@@ -54,6 +57,7 @@ private:
     int m_lives;
     bool m_lost;
     sf::RectangleShape m_bodyRect;
+    Textbox *m_textbox;
 };
 
 
